@@ -10,10 +10,20 @@ jobs:
     container: 
       image: checkmarx/ast-cli:latest
     steps: 
-      - name: checkmarx task
-        run: |
-         cx scan create --project-name mokkang/simple-nodejs-app --application-name "SANDBOX - DONOTDELETE" --client_id ${secrets.CX_CLIENT_ID} --client_secret ${secrets.CX_CLIENT_SECRET} --base-uri https://us.ast.checkmarx.net --tenant "zayo" --async true
-#          - 
+      - name: checkmarxscan
+        run: | 
+            /app/bin/cx
+            scan create
+            -s .
+            --agent Github
+            --project-name mokkang/simple-nodejs-app
+            --branch master
+            --base-uri $BASE_URI
+            --base-auth-uri $BASE_AUTH_URI
+            --tenant zayo
+            --client-id $CLIENT_ID
+            --client-secret $CLIENT_SECRET 
+            --async true
 
 #     steps:
 #       # Note: this will likely fail if there are more than 500 flaws, due to Veracode results limiting
