@@ -1,0 +1,21 @@
+
+name: Checkmarx
+
+on: [push, pull_request, workflow_dispatch]
+ #on: gollum          # sort of a dummy to prevent this from running
+
+jobs:
+  get-policy-flaws:
+    runs-on: ubuntu-latest
+    #container: 
+   #   image: veracode/api-signing:latest
+    steps:
+      # Note: this will likely fail if there are more than 500 flaws, due to Veracode results limiting
+      #   (would need a more elaborate method)
+      - name: Checkmarx AST CLI Action
+        uses: checkmarx/ast-github-action@main #Github Action version
+        with:
+          base_uri: https://us.ast.checkmarx.net/
+          cx_tenant: zayo
+          cx_client_id: ${{ secrets.CX_CLIENT_ID }}
+          cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
