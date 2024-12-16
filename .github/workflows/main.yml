@@ -10,6 +10,13 @@ jobs:
     container: 
       image: checkmarx/ast-cli:latest
     steps: 
+      - name: Checkmarx AST CLI Action
+        uses: checkmarx/ast-github-action@main #Github Action version
+        with:
+          base_uri: https://us.ast.checkmarx.net/
+          cx_tenant: zayo
+          cx_client_id: ${{ secrets.CX_CLIENT_ID }}
+          cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
       - name: checkmarxscan
         run: | 
             /app/bin/cx
