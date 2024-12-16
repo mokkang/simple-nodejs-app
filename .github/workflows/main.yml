@@ -23,7 +23,7 @@ jobs:
             --tenant zayo
             --client-id $CLIENT_ID
             --client-secret $CLIENT_SECRET 
-            --async true
+       #    --async true
 
 #     steps:
 #       # Note: this will likely fail if there are more than 500 flaws, due to Veracode results limiting
