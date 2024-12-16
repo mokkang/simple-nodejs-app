@@ -7,7 +7,7 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   checkmarx:
     runs-on: ubuntu-latest
-    container: 
+    container:  
       image: checkmarx/ast-cli:latest
     steps: 
       - name: Checkmarx AST CLI Action
