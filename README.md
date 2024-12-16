@@ -7,7 +7,7 @@ Simple-nodejs-app is a simple web application created using [Node.js](https://gi
 - Clone the repo ```https://github.com/rat9615/simple-nodejs-app```
 - [Fork, Clone or Download on Github](https://github.com/rat9615/simple-nodejs-app)
 
-## Usage
+## Usage 
 
 - After installation, run ```npm install``` to download and install all the required dependencies.
 - Run ```npm start``` to run the web application.
