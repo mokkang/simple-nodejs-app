@@ -23,6 +23,7 @@ jobs:
             scan create
             -s .
             --agent Github
+            --apikey ${{ secrets.CX_API_KEY }}
             --project-name mokkang/simple-nodejs-app
             --branch master
             --base-uri $BASE_URI
