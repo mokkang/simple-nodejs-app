@@ -17,6 +17,7 @@ jobs:
           cx_tenant: zayo
           cx_client_id: ${{ secrets.CX_CLIENT_ID }}
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
+          cx_file_filter: ${{ secrets.CX_FILE_FILTER }} 
       - name: checkmarxscan
         run: | 
             /app/bin/cx
@@ -31,8 +32,13 @@ jobs:
             --tenant zayo
             --client-id $CLIENT_ID
             --client-secret $CLIENT_SECRET 
+            --file-filter $CX_FILE_FILTER
        #    --async true
-
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v2
+        with: 
+         # Path to SARIF file relative to the root of the repository
+          sarif_file: cx_result.sarif
 #     steps:
 #       # Note: this will likely fail if there are more than 500 flaws, due to Veracode results limiting
 #       #   (would need a more elaborate method)
