@@ -3,7 +3,7 @@ name: Checkmarx
 
 on: [push, pull_request, workflow_dispatch]
  #on: gollum          # sort of a dummy to prevent this from running
-
+ 
 jobs:
   checkmarx:
     runs-on: ubuntu-latest
