@@ -1,0 +1,51 @@
+
+name: Checkmarx
+
+on: [push, pull_request, workflow_dispatch]
+ #on: gollum          # sort of a dummy to prevent this from running
+
+jobs:
+  checkmarx:
+    runs-on: ubuntu-latest
+    #container: 
+   #   image: veracode/api-signing:latest
+    steps:
+      # Note: this will likely fail if there are more than 500 flaws, due to Veracode results limiting
+      #   (would need a more elaborate method)
+      # - name: Checkmarx AST CLI Action
+      #   uses: checkmarx/ast-github-action@main #Github Action version
+      #   with:
+      #     base_uri: https://us.ast.checkmarx.net/
+      #     cx_tenant: zayo
+      #     cx_client_id: ${{ secrets.CX_CLIENT_ID }}
+      #     cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
+#          async: true 
+    - name: Checkmarx AST Github Action
+      # You may pin to the exact commit or the version.
+      uses: Checkmarx/ast-github-action@749fec53e0db0f6404a97e2e0807c3e80e3583a7
+      #@uses: Checkmarx/ast-github-action@2.0.23
+      with:
+        # Provide the AST portal URL
+        base_uri: https://us.ast.checkmarx.net/
+        # Provide the Tenant for AST portal URL
+        cx_tenant: zayo
+        # Client ID for AST portal authentication
+        cx_client_id: ${{ secrets.CX_CLIENT_ID }}
+        cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
+        # Secret key for AST portal authentication
+        #cx_client_secret: 
+        # Select a Checkmarx Project Name
+        project_name: mokkang/simple-nodejs-app # optional, default is ${{ github.repository }}
+        # Branch name
+        branch: ${{ github.head_ref || github.ref }} # optional, default is ${{ github.head_ref || github.ref }}
+        # GitHub API Token
+      #E  github_token: # optional, default is ${{ github.token }}
+        # Additional parameters for AST scan
+        additional_params: --async true # optional, default is 
+        # Repository name for PR decoration
+      #  repo_name: # optional, default is ${{ github.event.repository.name }}
+        # Organization name to create the Pr comment
+      #  namespace: # optional, default is ${{ github.repository_owner }}
+        # Pr Number of the pull request that needs the decoration
+     #   pr_number: # optional, default is ${{ github.event.number }}
+              
