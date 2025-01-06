@@ -18,21 +18,21 @@ jobs:
           cx_client_id: ${{ secrets.CX_CLIENT_ID }}
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
           cx_file_filter: ${{ secrets.CX_FILE_FILTER }} 
-      - name: checkmarxscan
-        run: | 
-            /app/bin/cx
-            scan create
-            -s .
-            --agent Github
-            --apikey ${{ secrets.CX_API_KEY }}
-            --project-name mokkang/simple-nodejs-app
-            --branch master
-            --base-uri $BASE_URI
-            --base-auth-uri $BASE_AUTH_URI
-            --tenant zayo
-            --client-id $CLIENT_ID
-            --client-secret $CLIENT_SECRET 
-            --file-filter $CX_FILE_FILTER
+      # - name: checkmarxscan
+      #   run: | 
+      #       /app/bin/cx
+      #       scan create
+      #       -s .
+      #       --agent Github
+      #       --apikey ${{ secrets.CX_API_KEY }}
+      #       --project-name mokkang/simple-nodejs-app
+      #       --branch master
+      #       --base-uri $BASE_URI
+      #       --base-auth-uri $BASE_AUTH_URI
+      #       --tenant zayo
+      #       --client-id $CLIENT_ID
+      #       --client-secret $CLIENT_SECRET 
+      #       --file-filter $CX_FILE_FILTER
        #    --async true
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2
