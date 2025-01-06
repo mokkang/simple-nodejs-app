@@ -38,7 +38,7 @@ jobs:
         uses: github/codeql-action/upload-sarif@v2
         with: 
          # Path to SARIF file relative to the root of the repository
-          sarif_file: cx_result.sarif
+          sarif_file: cx_result.md
 #     steps:
 #       # Note: this will likely fail if there are more than 500 flaws, due to Veracode results limiting
 #       #   (would need a more elaborate method)
